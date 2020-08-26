@@ -1,0 +1,76 @@
+fragment ProfileDetails on Profile {
+  id
+  name
+  #  createdAt
+  role
+  developer
+  username
+  avatarUrl
+  #  bio
+  #  location
+  #  role
+  #  vendor {
+  #    description
+  #    enabled
+  #  }
+  #  customer {
+  #    description
+  #    enabled
+  #  }
+  #  followersCount
+  #  followingCount
+}
+
+fragment ProfileRelationDetails on ProfileRelation {
+  isFollowedByYou
+  isFollowingYou
+  isYou
+}
+
+query Profiles($input: CorePagingInput) {
+  profiles(input: $input) {
+    ...ProfileDetails
+  }
+}
+
+query profile($username: String!) {
+  profile(username: $username) {
+    ...ProfileDetails
+  }
+}
+
+query myProfile {
+  myProfile {
+    ...ProfileDetails
+  }
+}
+
+query profileFollowers($username: String!) {
+  profileFollowers(username: $username) {
+    ...ProfileDetails
+  }
+}
+
+query profileFollowing($username: String!) {
+  profileFollowing(username: $username) {
+    ...ProfileDetails
+  }
+}
+
+query profileRelation($username: String!) {
+  profileRelation(username: $username) {
+    ...ProfileRelationDetails
+  }
+}
+
+mutation followProfile($username: String!) {
+  followProfile(username: $username) {
+    username
+  }
+}
+
+mutation unfollowProfile($username: String!) {
+  unfollowProfile(username: $username) {
+    username
+  }
+}

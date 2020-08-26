@@ -1,0 +1,35 @@
+fragment ActivityDetails on Activity {
+  id
+  type
+  title
+  message
+  referenceType
+  referenceId
+  referenceLink
+  data
+  createdAt
+  user {
+    ...ProfileDetails
+  }
+  actor {
+    ...ProfileDetails
+  }
+}
+
+query userActivities($username: String!) {
+  userActivities(username: $username) {
+    ...ActivityDetails
+  }
+}
+
+query myActivities {
+  myActivities {
+    ...ActivityDetails
+  }
+}
+
+query myActivityFeed($input: CorePagingInput) {
+  myActivityFeed(input: $input) {
+    ...ActivityDetails
+  }
+}

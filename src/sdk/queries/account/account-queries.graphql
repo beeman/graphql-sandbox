@@ -1,0 +1,104 @@
+query AccountEmails {
+  accountEmails {
+    ...EmailDetails
+  }
+}
+
+query AccountIdentities {
+  accountIdentities {
+    ...IdentityDetails
+  }
+}
+
+query AccountIdentity($identityId: String!) {
+  accountIdentity(identityId: $identityId) {
+    ...IdentityDetails
+  }
+}
+
+query AccountProfile {
+  accountProfile {
+    ...UserDetails
+    emails {
+      ...EmailDetails
+    }
+  }
+}
+
+query AccountUsernameAvailable($username: String!) {
+  accountUsernameAvailable(username: $username)
+}
+
+mutation AccountCreateEmail($input: AccountCreateEmailInput!) {
+  accountCreateEmail(input: $input) {
+    ...EmailDetails
+  }
+}
+
+mutation AccountLinkIdentity($input: AccountLinkIdentityInput!) {
+  accountLinkIdentity(input: $input) {
+    ...IdentityDetails
+  }
+}
+
+mutation AccountCustomIdentity($input: AccountCustomIdentityInput!) {
+  accountCustomIdentity(input: $input) {
+    ...IdentityDetails
+  }
+}
+
+mutation AccountDeleteEmail($emailId: String!) {
+  accountDeleteEmail(emailId: $emailId) {
+    ...EmailDetails
+  }
+}
+
+mutation AccountDeleteIdentity($identityId: String!) {
+  accountDeleteIdentity(identityId: $identityId) {
+    ...IdentityDetails
+  }
+}
+
+mutation AccountMarkEmailPrimary($emailId: String!) {
+  accountMarkEmailPrimary(emailId: $emailId) {
+    ...EmailDetails
+  }
+}
+
+mutation AccountMarkEmailPrivate($emailId: String!) {
+  accountMarkEmailPrivate(emailId: $emailId) {
+    ...EmailDetails
+  }
+}
+
+mutation AccountMarkEmailPublic($emailId: String!) {
+  accountMarkEmailPublic(emailId: $emailId) {
+    ...EmailDetails
+  }
+}
+
+mutation AccountUpdateIdentity($identityId: String!, $input: AccountUpdateIdentityInput!) {
+  accountUpdateIdentity(identityId: $identityId, input: $input) {
+    ...IdentityDetails
+  }
+}
+
+mutation AccountUpdateProfile($input: AccountUpdateProfileInput!) {
+  accountUpdateProfile(input: $input) {
+    ...UserDetails
+  }
+}
+
+mutation AccountRequestSupport($input: AccountRequestSupportInput!) {
+  accountRequestSupport(input: $input)
+}
+
+mutation AccountUpdateUsername($username: String!) {
+  accountUpdateUsername(username: $username) {
+    ...UserDetails
+  }
+}
+
+mutation AccountResetPassword {
+  accountResetPassword
+}

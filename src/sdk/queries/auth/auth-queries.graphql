@@ -1,0 +1,103 @@
+fragment IdentityDetails on Identity {
+  id
+  createdAt
+  updatedAt
+  type
+  providerType
+  integrationType
+  profile
+  label
+  remoteId
+  data
+  config
+  accessToken
+  refreshToken
+}
+
+fragment UserDetails on User {
+  id
+  createdAt
+  updatedAt
+  email
+  firstName
+  lastName
+  name
+  username
+  avatarUrl
+  bio
+  location
+  phone
+  languages
+  dob
+  role
+  developer
+}
+
+fragment EmailDetails on UserEmail {
+  id
+  email
+  primary
+  public
+  verified
+}
+
+query Uptime {
+  uptime
+}
+
+query Me {
+  me {
+    ...UserDetails
+  }
+}
+
+mutation Login($input: AuthLoginInput!) {
+  login(input: $input) {
+    token
+    user {
+      ...UserDetails
+    }
+  }
+}
+
+mutation Register($input: AuthRegisterInput!) {
+  register(input: $input) {
+    token
+    user {
+      ...UserDetails
+    }
+  }
+}
+
+mutation ForgotPassword($email: String!) {
+  forgotPassword(email: $email)
+}
+
+mutation ResetPassword($password: String!, $token: String!) {
+  resetPassword(password: $password, token: $token) {
+    username
+    email
+  }
+}
+
+mutation ValidateEmail($token: String!) {
+  validateEmail(token: $token)
+}
+
+mutation SendValidationEmail($emailId: String!) {
+  sendValidationEmail(emailId: $emailId)
+}
+
+subscription meSub {
+  meSub {
+    ...UserDetails
+  }
+}
+
+query AuthProviders {
+  authProviders {
+    id
+    identityType
+    type
+  }
+}

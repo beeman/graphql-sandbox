@@ -1,0 +1,64 @@
+fragment ChatDetails on Chat {
+  id
+  createdAt
+  updatedAt
+  key
+  profile {
+    ...ProfileDetails
+  }
+  lastMessage {
+    ...MessageDetails
+  }
+}
+
+fragment MessageDetails on Message {
+  id
+  text
+  createdAt
+  type
+  author {
+    ...ProfileDetails
+  }
+}
+subscription subscribeMessages {
+  subscribeMessages {
+    ...MessageDetails
+  }
+}
+mutation sendMessage($text: String!, $profileId: String!) {
+  sendMessage(data: { text: $text, profileId: $profileId }) {
+    id
+    createdAt
+    updatedAt
+  }
+}
+
+mutation createChat($profileId: String!) {
+  createChat(profileId: $profileId) {
+    ...ChatDetails
+  }
+}
+query chats {
+  chats {
+    ...ChatDetails
+  }
+}
+
+query chat($id: String!) {
+  chat(id: $id) {
+    id
+    key
+    profile {
+      ...ProfileDetails
+    }
+    messages {
+      ...MessageDetails
+    }
+  }
+}
+
+query messages($id: String!) {
+  messages(chatId: $id) {
+    ...MessageDetails
+  }
+}
