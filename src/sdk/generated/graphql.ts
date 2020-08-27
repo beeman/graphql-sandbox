@@ -1,6 +1,7 @@
 import { gql } from 'apollo-angular'
 import { Injectable } from '@angular/core'
 import * as Apollo from 'apollo-angular'
+import * as ApolloCore from '@apollo/client/core'
 export type Maybe<T> = T | null
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
 /** All built-in and custom scalars, mapped to their actual values */
@@ -4464,5 +4465,449 @@ export class UnfollowProfileGQL extends Apollo.Mutation<UnfollowProfileMutation,
 
   constructor(apollo: Apollo.Apollo) {
     super(apollo)
+  }
+}
+
+type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
+
+interface WatchQueryOptionsAlone<V> extends Omit<ApolloCore.WatchQueryOptions<V>, 'query' | 'variables'> {}
+
+interface QueryOptionsAlone<V> extends Omit<ApolloCore.QueryOptions<V>, 'query' | 'variables'> {}
+
+interface MutationOptionsAlone<T, V> extends Omit<ApolloCore.MutationOptions<T, V>, 'mutation' | 'variables'> {}
+
+interface SubscriptionOptionsAlone<V> extends Omit<ApolloCore.SubscriptionOptions<V>, 'query' | 'variables'> {}
+
+@Injectable({ providedIn: 'root' })
+export class ApolloAngularSDK {
+  constructor(
+    private accountEmailsGql: AccountEmailsGQL,
+    private accountIdentitiesGql: AccountIdentitiesGQL,
+    private accountIdentityGql: AccountIdentityGQL,
+    private accountProfileGql: AccountProfileGQL,
+    private accountUsernameAvailableGql: AccountUsernameAvailableGQL,
+    private accountCreateEmailGql: AccountCreateEmailGQL,
+    private accountLinkIdentityGql: AccountLinkIdentityGQL,
+    private accountCustomIdentityGql: AccountCustomIdentityGQL,
+    private accountDeleteEmailGql: AccountDeleteEmailGQL,
+    private accountDeleteIdentityGql: AccountDeleteIdentityGQL,
+    private accountMarkEmailPrimaryGql: AccountMarkEmailPrimaryGQL,
+    private accountMarkEmailPrivateGql: AccountMarkEmailPrivateGQL,
+    private accountMarkEmailPublicGql: AccountMarkEmailPublicGQL,
+    private accountUpdateIdentityGql: AccountUpdateIdentityGQL,
+    private accountUpdateProfileGql: AccountUpdateProfileGQL,
+    private accountRequestSupportGql: AccountRequestSupportGQL,
+    private accountUpdateUsernameGql: AccountUpdateUsernameGQL,
+    private accountResetPasswordGql: AccountResetPasswordGQL,
+    private uptimeGql: UptimeGQL,
+    private meGql: MeGQL,
+    private loginGql: LoginGQL,
+    private registerGql: RegisterGQL,
+    private forgotPasswordGql: ForgotPasswordGQL,
+    private resetPasswordGql: ResetPasswordGQL,
+    private validateEmailGql: ValidateEmailGQL,
+    private sendValidationEmailGql: SendValidationEmailGQL,
+    private meSubGql: MeSubGQL,
+    private authProvidersGql: AuthProvidersGQL,
+    private userActivitiesGql: UserActivitiesGQL,
+    private myActivitiesGql: MyActivitiesGQL,
+    private myActivityFeedGql: MyActivityFeedGQL,
+    private subscribeMessagesGql: SubscribeMessagesGQL,
+    private sendMessageGql: SendMessageGQL,
+    private createChatGql: CreateChatGQL,
+    private chatsGql: ChatsGQL,
+    private chatGql: ChatGQL,
+    private messagesGql: MessagesGQL,
+    private profilesGql: ProfilesGQL,
+    private profileGql: ProfileGQL,
+    private myProfileGql: MyProfileGQL,
+    private profileFollowersGql: ProfileFollowersGQL,
+    private profileFollowingGql: ProfileFollowingGQL,
+    private profileRelationGql: ProfileRelationGQL,
+    private followProfileGql: FollowProfileGQL,
+    private unfollowProfileGql: UnfollowProfileGQL,
+  ) {}
+
+  accountEmails(variables?: AccountEmailsQueryVariables, options?: QueryOptionsAlone<AccountEmailsQueryVariables>) {
+    return this.accountEmailsGql.fetch(variables, options)
+  }
+
+  accountEmailsWatch(
+    variables?: AccountEmailsQueryVariables,
+    options?: WatchQueryOptionsAlone<AccountEmailsQueryVariables>,
+  ) {
+    return this.accountEmailsGql.watch(variables, options)
+  }
+
+  accountIdentities(
+    variables?: AccountIdentitiesQueryVariables,
+    options?: QueryOptionsAlone<AccountIdentitiesQueryVariables>,
+  ) {
+    return this.accountIdentitiesGql.fetch(variables, options)
+  }
+
+  accountIdentitiesWatch(
+    variables?: AccountIdentitiesQueryVariables,
+    options?: WatchQueryOptionsAlone<AccountIdentitiesQueryVariables>,
+  ) {
+    return this.accountIdentitiesGql.watch(variables, options)
+  }
+
+  accountIdentity(
+    variables: AccountIdentityQueryVariables,
+    options?: QueryOptionsAlone<AccountIdentityQueryVariables>,
+  ) {
+    return this.accountIdentityGql.fetch(variables, options)
+  }
+
+  accountIdentityWatch(
+    variables: AccountIdentityQueryVariables,
+    options?: WatchQueryOptionsAlone<AccountIdentityQueryVariables>,
+  ) {
+    return this.accountIdentityGql.watch(variables, options)
+  }
+
+  accountProfile(variables?: AccountProfileQueryVariables, options?: QueryOptionsAlone<AccountProfileQueryVariables>) {
+    return this.accountProfileGql.fetch(variables, options)
+  }
+
+  accountProfileWatch(
+    variables?: AccountProfileQueryVariables,
+    options?: WatchQueryOptionsAlone<AccountProfileQueryVariables>,
+  ) {
+    return this.accountProfileGql.watch(variables, options)
+  }
+
+  accountUsernameAvailable(
+    variables: AccountUsernameAvailableQueryVariables,
+    options?: QueryOptionsAlone<AccountUsernameAvailableQueryVariables>,
+  ) {
+    return this.accountUsernameAvailableGql.fetch(variables, options)
+  }
+
+  accountUsernameAvailableWatch(
+    variables: AccountUsernameAvailableQueryVariables,
+    options?: WatchQueryOptionsAlone<AccountUsernameAvailableQueryVariables>,
+  ) {
+    return this.accountUsernameAvailableGql.watch(variables, options)
+  }
+
+  accountCreateEmail(
+    variables: AccountCreateEmailMutationVariables,
+    options?: MutationOptionsAlone<AccountCreateEmailMutation, AccountCreateEmailMutationVariables>,
+  ) {
+    return this.accountCreateEmailGql.mutate(variables, options)
+  }
+
+  accountLinkIdentity(
+    variables: AccountLinkIdentityMutationVariables,
+    options?: MutationOptionsAlone<AccountLinkIdentityMutation, AccountLinkIdentityMutationVariables>,
+  ) {
+    return this.accountLinkIdentityGql.mutate(variables, options)
+  }
+
+  accountCustomIdentity(
+    variables: AccountCustomIdentityMutationVariables,
+    options?: MutationOptionsAlone<AccountCustomIdentityMutation, AccountCustomIdentityMutationVariables>,
+  ) {
+    return this.accountCustomIdentityGql.mutate(variables, options)
+  }
+
+  accountDeleteEmail(
+    variables: AccountDeleteEmailMutationVariables,
+    options?: MutationOptionsAlone<AccountDeleteEmailMutation, AccountDeleteEmailMutationVariables>,
+  ) {
+    return this.accountDeleteEmailGql.mutate(variables, options)
+  }
+
+  accountDeleteIdentity(
+    variables: AccountDeleteIdentityMutationVariables,
+    options?: MutationOptionsAlone<AccountDeleteIdentityMutation, AccountDeleteIdentityMutationVariables>,
+  ) {
+    return this.accountDeleteIdentityGql.mutate(variables, options)
+  }
+
+  accountMarkEmailPrimary(
+    variables: AccountMarkEmailPrimaryMutationVariables,
+    options?: MutationOptionsAlone<AccountMarkEmailPrimaryMutation, AccountMarkEmailPrimaryMutationVariables>,
+  ) {
+    return this.accountMarkEmailPrimaryGql.mutate(variables, options)
+  }
+
+  accountMarkEmailPrivate(
+    variables: AccountMarkEmailPrivateMutationVariables,
+    options?: MutationOptionsAlone<AccountMarkEmailPrivateMutation, AccountMarkEmailPrivateMutationVariables>,
+  ) {
+    return this.accountMarkEmailPrivateGql.mutate(variables, options)
+  }
+
+  accountMarkEmailPublic(
+    variables: AccountMarkEmailPublicMutationVariables,
+    options?: MutationOptionsAlone<AccountMarkEmailPublicMutation, AccountMarkEmailPublicMutationVariables>,
+  ) {
+    return this.accountMarkEmailPublicGql.mutate(variables, options)
+  }
+
+  accountUpdateIdentity(
+    variables: AccountUpdateIdentityMutationVariables,
+    options?: MutationOptionsAlone<AccountUpdateIdentityMutation, AccountUpdateIdentityMutationVariables>,
+  ) {
+    return this.accountUpdateIdentityGql.mutate(variables, options)
+  }
+
+  accountUpdateProfile(
+    variables: AccountUpdateProfileMutationVariables,
+    options?: MutationOptionsAlone<AccountUpdateProfileMutation, AccountUpdateProfileMutationVariables>,
+  ) {
+    return this.accountUpdateProfileGql.mutate(variables, options)
+  }
+
+  accountRequestSupport(
+    variables: AccountRequestSupportMutationVariables,
+    options?: MutationOptionsAlone<AccountRequestSupportMutation, AccountRequestSupportMutationVariables>,
+  ) {
+    return this.accountRequestSupportGql.mutate(variables, options)
+  }
+
+  accountUpdateUsername(
+    variables: AccountUpdateUsernameMutationVariables,
+    options?: MutationOptionsAlone<AccountUpdateUsernameMutation, AccountUpdateUsernameMutationVariables>,
+  ) {
+    return this.accountUpdateUsernameGql.mutate(variables, options)
+  }
+
+  accountResetPassword(
+    variables?: AccountResetPasswordMutationVariables,
+    options?: MutationOptionsAlone<AccountResetPasswordMutation, AccountResetPasswordMutationVariables>,
+  ) {
+    return this.accountResetPasswordGql.mutate(variables, options)
+  }
+
+  uptime(variables?: UptimeQueryVariables, options?: QueryOptionsAlone<UptimeQueryVariables>) {
+    return this.uptimeGql.fetch(variables, options)
+  }
+
+  uptimeWatch(variables?: UptimeQueryVariables, options?: WatchQueryOptionsAlone<UptimeQueryVariables>) {
+    return this.uptimeGql.watch(variables, options)
+  }
+
+  me(variables?: MeQueryVariables, options?: QueryOptionsAlone<MeQueryVariables>) {
+    return this.meGql.fetch(variables, options)
+  }
+
+  meWatch(variables?: MeQueryVariables, options?: WatchQueryOptionsAlone<MeQueryVariables>) {
+    return this.meGql.watch(variables, options)
+  }
+
+  login(variables: LoginMutationVariables, options?: MutationOptionsAlone<LoginMutation, LoginMutationVariables>) {
+    return this.loginGql.mutate(variables, options)
+  }
+
+  register(
+    variables: RegisterMutationVariables,
+    options?: MutationOptionsAlone<RegisterMutation, RegisterMutationVariables>,
+  ) {
+    return this.registerGql.mutate(variables, options)
+  }
+
+  forgotPassword(
+    variables: ForgotPasswordMutationVariables,
+    options?: MutationOptionsAlone<ForgotPasswordMutation, ForgotPasswordMutationVariables>,
+  ) {
+    return this.forgotPasswordGql.mutate(variables, options)
+  }
+
+  resetPassword(
+    variables: ResetPasswordMutationVariables,
+    options?: MutationOptionsAlone<ResetPasswordMutation, ResetPasswordMutationVariables>,
+  ) {
+    return this.resetPasswordGql.mutate(variables, options)
+  }
+
+  validateEmail(
+    variables: ValidateEmailMutationVariables,
+    options?: MutationOptionsAlone<ValidateEmailMutation, ValidateEmailMutationVariables>,
+  ) {
+    return this.validateEmailGql.mutate(variables, options)
+  }
+
+  sendValidationEmail(
+    variables: SendValidationEmailMutationVariables,
+    options?: MutationOptionsAlone<SendValidationEmailMutation, SendValidationEmailMutationVariables>,
+  ) {
+    return this.sendValidationEmailGql.mutate(variables, options)
+  }
+
+  meSub(variables?: MeSubSubscriptionVariables, options?: SubscriptionOptionsAlone<MeSubSubscriptionVariables>) {
+    return this.meSubGql.subscribe(variables, options)
+  }
+
+  authProviders(variables?: AuthProvidersQueryVariables, options?: QueryOptionsAlone<AuthProvidersQueryVariables>) {
+    return this.authProvidersGql.fetch(variables, options)
+  }
+
+  authProvidersWatch(
+    variables?: AuthProvidersQueryVariables,
+    options?: WatchQueryOptionsAlone<AuthProvidersQueryVariables>,
+  ) {
+    return this.authProvidersGql.watch(variables, options)
+  }
+
+  userActivities(variables: UserActivitiesQueryVariables, options?: QueryOptionsAlone<UserActivitiesQueryVariables>) {
+    return this.userActivitiesGql.fetch(variables, options)
+  }
+
+  userActivitiesWatch(
+    variables: UserActivitiesQueryVariables,
+    options?: WatchQueryOptionsAlone<UserActivitiesQueryVariables>,
+  ) {
+    return this.userActivitiesGql.watch(variables, options)
+  }
+
+  myActivities(variables?: MyActivitiesQueryVariables, options?: QueryOptionsAlone<MyActivitiesQueryVariables>) {
+    return this.myActivitiesGql.fetch(variables, options)
+  }
+
+  myActivitiesWatch(
+    variables?: MyActivitiesQueryVariables,
+    options?: WatchQueryOptionsAlone<MyActivitiesQueryVariables>,
+  ) {
+    return this.myActivitiesGql.watch(variables, options)
+  }
+
+  myActivityFeed(variables?: MyActivityFeedQueryVariables, options?: QueryOptionsAlone<MyActivityFeedQueryVariables>) {
+    return this.myActivityFeedGql.fetch(variables, options)
+  }
+
+  myActivityFeedWatch(
+    variables?: MyActivityFeedQueryVariables,
+    options?: WatchQueryOptionsAlone<MyActivityFeedQueryVariables>,
+  ) {
+    return this.myActivityFeedGql.watch(variables, options)
+  }
+
+  subscribeMessages(
+    variables?: SubscribeMessagesSubscriptionVariables,
+    options?: SubscriptionOptionsAlone<SubscribeMessagesSubscriptionVariables>,
+  ) {
+    return this.subscribeMessagesGql.subscribe(variables, options)
+  }
+
+  sendMessage(
+    variables: SendMessageMutationVariables,
+    options?: MutationOptionsAlone<SendMessageMutation, SendMessageMutationVariables>,
+  ) {
+    return this.sendMessageGql.mutate(variables, options)
+  }
+
+  createChat(
+    variables: CreateChatMutationVariables,
+    options?: MutationOptionsAlone<CreateChatMutation, CreateChatMutationVariables>,
+  ) {
+    return this.createChatGql.mutate(variables, options)
+  }
+
+  chats(variables?: ChatsQueryVariables, options?: QueryOptionsAlone<ChatsQueryVariables>) {
+    return this.chatsGql.fetch(variables, options)
+  }
+
+  chatsWatch(variables?: ChatsQueryVariables, options?: WatchQueryOptionsAlone<ChatsQueryVariables>) {
+    return this.chatsGql.watch(variables, options)
+  }
+
+  chat(variables: ChatQueryVariables, options?: QueryOptionsAlone<ChatQueryVariables>) {
+    return this.chatGql.fetch(variables, options)
+  }
+
+  chatWatch(variables: ChatQueryVariables, options?: WatchQueryOptionsAlone<ChatQueryVariables>) {
+    return this.chatGql.watch(variables, options)
+  }
+
+  messages(variables: MessagesQueryVariables, options?: QueryOptionsAlone<MessagesQueryVariables>) {
+    return this.messagesGql.fetch(variables, options)
+  }
+
+  messagesWatch(variables: MessagesQueryVariables, options?: WatchQueryOptionsAlone<MessagesQueryVariables>) {
+    return this.messagesGql.watch(variables, options)
+  }
+
+  profiles(variables?: ProfilesQueryVariables, options?: QueryOptionsAlone<ProfilesQueryVariables>) {
+    return this.profilesGql.fetch(variables, options)
+  }
+
+  profilesWatch(variables?: ProfilesQueryVariables, options?: WatchQueryOptionsAlone<ProfilesQueryVariables>) {
+    return this.profilesGql.watch(variables, options)
+  }
+
+  profile(variables: ProfileQueryVariables, options?: QueryOptionsAlone<ProfileQueryVariables>) {
+    return this.profileGql.fetch(variables, options)
+  }
+
+  profileWatch(variables: ProfileQueryVariables, options?: WatchQueryOptionsAlone<ProfileQueryVariables>) {
+    return this.profileGql.watch(variables, options)
+  }
+
+  myProfile(variables?: MyProfileQueryVariables, options?: QueryOptionsAlone<MyProfileQueryVariables>) {
+    return this.myProfileGql.fetch(variables, options)
+  }
+
+  myProfileWatch(variables?: MyProfileQueryVariables, options?: WatchQueryOptionsAlone<MyProfileQueryVariables>) {
+    return this.myProfileGql.watch(variables, options)
+  }
+
+  profileFollowers(
+    variables: ProfileFollowersQueryVariables,
+    options?: QueryOptionsAlone<ProfileFollowersQueryVariables>,
+  ) {
+    return this.profileFollowersGql.fetch(variables, options)
+  }
+
+  profileFollowersWatch(
+    variables: ProfileFollowersQueryVariables,
+    options?: WatchQueryOptionsAlone<ProfileFollowersQueryVariables>,
+  ) {
+    return this.profileFollowersGql.watch(variables, options)
+  }
+
+  profileFollowing(
+    variables: ProfileFollowingQueryVariables,
+    options?: QueryOptionsAlone<ProfileFollowingQueryVariables>,
+  ) {
+    return this.profileFollowingGql.fetch(variables, options)
+  }
+
+  profileFollowingWatch(
+    variables: ProfileFollowingQueryVariables,
+    options?: WatchQueryOptionsAlone<ProfileFollowingQueryVariables>,
+  ) {
+    return this.profileFollowingGql.watch(variables, options)
+  }
+
+  profileRelation(
+    variables: ProfileRelationQueryVariables,
+    options?: QueryOptionsAlone<ProfileRelationQueryVariables>,
+  ) {
+    return this.profileRelationGql.fetch(variables, options)
+  }
+
+  profileRelationWatch(
+    variables: ProfileRelationQueryVariables,
+    options?: WatchQueryOptionsAlone<ProfileRelationQueryVariables>,
+  ) {
+    return this.profileRelationGql.watch(variables, options)
+  }
+
+  followProfile(
+    variables: FollowProfileMutationVariables,
+    options?: MutationOptionsAlone<FollowProfileMutation, FollowProfileMutationVariables>,
+  ) {
+    return this.followProfileGql.mutate(variables, options)
+  }
+
+  unfollowProfile(
+    variables: UnfollowProfileMutationVariables,
+    options?: MutationOptionsAlone<UnfollowProfileMutation, UnfollowProfileMutationVariables>,
+  ) {
+    return this.unfollowProfileGql.mutate(variables, options)
   }
 }

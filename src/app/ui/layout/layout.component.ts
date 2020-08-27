@@ -1,10 +1,13 @@
 import { Component } from '@angular/core'
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
+import { AuthService } from '../../auth/auth.service'
 
 @Component({
   selector: 'app-layout',
   template: `
     <web-layout>
-      <web-header>
+      <web-header *ngIf="links$ | async as links">
         <ui-navbar
           [navbarStyle]="$any('dark grd-kikstart-2')"
           [title]="title"
@@ -24,9 +27,17 @@ import { Component } from '@angular/core'
 export class LayoutComponent {
   public logo = 'assets/logo.png'
   public title = 'GraphQL Sandbox'
-  public links = [
-    { path: '/', label: 'Home' },
-    { path: '/login', label: 'Login' },
-  ]
   public copyright = `Copyright <a href="https://kikstart.dev" target="_blank">kikstart</a> &copy; ${new Date().getFullYear()}`
+  public links$: Observable<{ path: string; label: string }[]> = this.auth.user$.pipe(
+    map((user) =>
+      user
+        ? [
+            { path: '/', label: 'Home' },
+            { path: '/logout', label: 'Log out' },
+          ]
+        : [{ path: '/login', label: 'Log in' }],
+    ),
+  )
+
+  constructor(private readonly auth: AuthService) {}
 }
